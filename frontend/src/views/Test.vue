@@ -1,18 +1,14 @@
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  <div v-for="movie in movies" class="col" :key="movie._id">
-    <div class="card">
-      <img v-if="movie.poster" class="card-img-top"
-        :src="movie.poster" />
-      <div class="card-body">
-        <h5 class="card-title fw-bold">{{ movie.title }}</h5>
-        <p v-if="movie.rated" class="card-text">
-          Rating: {{ movie.rated }}
-        </p>
-        <p class="card-text">{{ movie.plot }}</p>
-        <a class="btn btn-primary">
-          View Reviews
-        </a>
-      </div>
-    </div>
-  </div>
-</div>
+    <h3>Reviews</h3>
+    <ul class="list-group">
+      <li class="list-group-item pb-3 pt-3" v-for="review in movie.reviews" :key="review._id">
+        <h5 class="card-title">Review by {{ review.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ review.date }}</h6>
+        <p class="card-text">{{ review.review }}</p>
+        <a class="btn btn-primary me-3"> Edit </a>
+        <a class="btn btn-danger"> Delete </a>
+      </li>
+    </ul>
+
+        <h6 class="card-subtitle mb-2 text-muted">
+          {{ getFormattedDate(review.date) }}
+        </h6>

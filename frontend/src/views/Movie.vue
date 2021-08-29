@@ -17,6 +17,17 @@
           <hr />
 
           <h3>Reviews</h3>
+          <ul class="list-group">
+            <li class="list-group-item pb-3 pt-3" v-for="review in movie.reviews" :key="review._id">
+              <h5 class="card-title">Review by {{ review.name }}</h5>
+              <h6 class="card-subtitle mb-2 text-muted">
+                {{ getFormattedDate(review.date) }}
+              </h6>
+              <p class="card-text">{{ review.review }}</p>
+              <a class="btn btn-primary me-3"> Edit </a>
+              <a class="btn btn-danger"> Delete </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -24,6 +35,7 @@
 </template>
 
 <script>
+import * as moment from 'moment';
 import MovieService from '../services/MovieService';
 
 export default {
@@ -49,6 +61,9 @@ export default {
         this.$route.params.id,
       );
       this.movie = movieData;
+    },
+    getFormattedDate(date) {
+      return moment(date).format('Do MMMM YYYY');
     },
   },
 };
