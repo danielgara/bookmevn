@@ -11,11 +11,7 @@
         <div class="col">
           <p class="card-text">{{ movie.plot }}</p>
           <div>
-            <AddReview
-              v-if="$store.state.user.id"
-              :movieId="movie._id"
-              v-on:updateMovieInfo="getMovie"
-            />
+            Form to Add Reviews
           </div>
 
           <hr />
@@ -41,13 +37,9 @@
 <script>
 import * as moment from 'moment';
 import MovieService from '../services/MovieService';
-import AddReview from '../components/AddReview.vue';
 
 export default {
   name: 'Movies',
-  components: {
-    AddReview,
-  },
   data() {
     return {
       movie: {
