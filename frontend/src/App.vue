@@ -20,9 +20,12 @@
             <router-link to="/about" class="nav-link active">
               About
             </router-link>
-            <router-link to="/login" class="nav-link active">
+            <router-link v-if="!userData" to="/login" class="nav-link active">
               Login
             </router-link>
+            <a v-if="userData" v-on:click="logout()" class="nav-link active pointer">
+              Logout ({{ userData }})
+            </a>
           </div>
         </div>
       </div>
@@ -54,6 +57,19 @@
 <script>
 export default {
   name: 'App',
+  computed: {
+    userData() {
+      if (this.$store.state.user.id) {
+        return `${this.$store.state.user.id} - ${this.$store.state.user.name}`;
+      }
+      return '';
+    },
+  },
+  methods: {
+    logout() {
+      this.$store.commit('disconnect');
+    },
+  },
 };
 </script>
 
@@ -64,5 +80,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.pointer{
+  cursor:pointer;
 }
 </style>
