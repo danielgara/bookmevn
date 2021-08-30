@@ -37,7 +37,12 @@
               >
                 Edit
               </a>
-              <a class="btn btn-danger"> Delete </a>
+              <a v-if="verifyAuthorship(review.user_id)"
+                v-on:click="deleteReview(review._id)"
+                class="btn btn-danger"
+              >
+                Delete
+              </a>
             </li>
           </ul>
         </div>
@@ -110,6 +115,14 @@ export default {
         review_id: newReview._id,
       };
       await ReviewService.updateReview(data);
+    },
+    async deleteReview(reviewId) {
+      const data = {
+        user_id: this.$store.state.user.id,
+        review_id: reviewId,
+      };
+      await ReviewService.deleteReview(data);
+      this.getMovie();
     },
   },
 };
