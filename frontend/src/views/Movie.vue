@@ -5,10 +5,10 @@
     </div>
     <div class="card-body">
       <div class="row">
-        <div class="col">
+        <div class="col-md-6 col-sm-12">
           <img v-if="movie.poster" class="card-img-top" :src="movie.poster" />
         </div>
-        <div class="col">
+        <div class="col-md-6 col-sm-12">
           <p class="card-text">{{ movie.plot }}</p>
           <div>
             <AddReview
